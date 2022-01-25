@@ -12,7 +12,12 @@
         rel="stylesheet"
         :href="'https://cdn.jsdelivr.net/npm/water.css@2/out/' + mode + '.min.css'"
       >
-      <button class="theme-toggle" :aria-pressed="mode" aria-label="Change to dark mode">
+      <button
+        class="theme-toggle"
+        :aria-pressed="mode === 'light'"
+        aria-label="Change to dark mode"
+        @click="toggleMode"
+      >
         <svg class="theme-svg" focusable="false">
           <use class="theme-dark" xlink:href="#icon-mode-dark"></use>
           <use class="theme-light" xlink:href="#icon-mode-light"></use>
@@ -58,9 +63,17 @@
         el: '#app',
         data: function () {
           return {
+            mode: 'light'
           };
         },
         methods: {
+          toggleMode: function () {
+            if (this.mode === 'light') {
+              this.mode = 'dark';
+            } else {
+              this.mode = 'light';
+            }
+          },
           fileFromIndex: function (index) {
             return ((12 - index) + '').padStart(3, '0') + '.png';
           }
@@ -137,8 +150,6 @@
         pointer-events: none;
         transition: transform 0.5s ease-out;
       }
-
-      /* Light / dark mode button specifically */
       .theme-toggle[aria-pressed="false"] .theme-dark,
       .theme-toggle[aria-pressed="true"] .theme-light {
         display: none;
@@ -147,7 +158,6 @@
       .theme-toggle[aria-pressed="true"] .theme-dark {
         display: block;
       }
-
       @media print {
         .theme-toggle {
           display: none;

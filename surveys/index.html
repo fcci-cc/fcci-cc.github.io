@@ -8,6 +8,7 @@
   </head>
   <body>
     <div id="app" class="wrapper">
+      <!-- THEME PICKER -->
       <link
         rel="stylesheet"
         :href="'https://cdn.jsdelivr.net/npm/water.css@2/out/' + mode + '.min.css'"
@@ -36,13 +37,15 @@
         </defs>
       </svg>      
       
-      <h1>FreeCodeCamp Indy Surveys</h1>
+      <header>
+        <h1>FreeCodeCamp Indy Surveys</h1>
 
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScEIwFSIoyGfy7W-0dFoqG-x6LR8k7Vqi6ir5po2XksVYlMbA/viewform">
-        <button>
+        <button
+          @click="navigateTo('https://docs.google.com/forms/d/e/1FAIpQLScEIwFSIoyGfy7W-0dFoqG-x6LR8k7Vqi6ir5po2XksVYlMbA/viewform')"
+        >
           Take the January 2022 Survey
         </button>
-      </a>
+      </header>
 
       <hr>
 
@@ -58,6 +61,7 @@
         </a>
       </div>
     </div>
+
     <script>
       const app = new Vue({
         el: '#app',
@@ -73,6 +77,9 @@
             } else {
               this.mode = 'light';
             }
+          },
+          navigateTo: function (url) {
+            window.location = url;
           },
           fileFromIndex: function (index) {
             return ((12 - index) + '').padStart(3, '0') + '.png';

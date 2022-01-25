@@ -4,11 +4,33 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FreeCodeCamp Indy Surveys</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
   </head>
   <body>
     <div id="app" class="wrapper">
+      <link
+        rel="stylesheet"
+        :href="'https://cdn.jsdelivr.net/npm/water.css@2/out/' + mode + '.min.css'"
+      >
+      <button class="theme-toggle" :aria-pressed="mode" aria-label="Change to dark mode">
+        <svg class="theme-svg" focusable="false">
+          <use class="theme-dark" xlink:href="#icon-mode-dark"></use>
+          <use class="theme-light" xlink:href="#icon-mode-light"></use>
+        </svg>
+      </button>
+      <svg class="visually-hidden">
+        <defs>
+          <symbol viewBox="0 0 960 960" id="icon-mode-dark">
+            <path d="M340 41C47 129-112 544 147 798c207 204 515 205 713-62-166 6-347-43-455-189-109-147-80-372-65-506z" />
+            <path d="M870 331l-12 102 93 43-101 20-12 102-50-90-101 20 70-75-50-90 93 43 70-75zM522 300l23 57 62-5-47 40 23 57-52-32-48 40 15-60-52-33 61-4 15-60zM744 16l12 89 89 16-81 39 12 90-62-65-81 39 42-80-62-65 89 16 42-79z" />
+          </symbol>
+          <symbol viewBox="0 0 960 960" id="icon-mode-light">
+            <circle cx="479.5" cy="480.5" r="242" />
+            <path d="M480 800c22 0 40 18 40 40v80a40 40 0 01-80 0v-80c0-22 18-40 40-40zm480-320c0 22-18 40-40 40h-80a40 40 0 010-80h80c22 0 40 18 40 40zM706 763l57 56a40 40 0 1056-56l-56-57a40 40 0 10-57 57zm-509 56l57-56a40 40 0 10-57-57l-56 57a40 40 0 1056 56zm-77-379a40 40 0 010 80H40a40 40 0 010-80h80zm21-243l56 57a40 40 0 1057-57l-57-56a40 40 0 10-56 56zm622 57l56-57a40 40 0 10-56-56l-57 56a40 40 0 1057 57zM440 40v80a40 40 0 0080 0V40a40 40 0 00-80 0z" />
+          </symbol>
+        </defs>
+      </svg>      
+      
       <h1>FreeCodeCamp Indy Surveys</h1>
 
       <a href="https://docs.google.com/forms/d/e/1FAIpQLScEIwFSIoyGfy7W-0dFoqG-x6LR8k7Vqi6ir5po2XksVYlMbA/viewform">
@@ -64,8 +86,72 @@
       button:hover {
         background: #040A0F;
       }
+      button::-moz-focus-inner {
+        border: 0px;
+      }
       .img-container {
         margin-bottom: 20px;
+      }
+
+      .visually-hidden {
+        position: absolute !important;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        width: 1px;
+        margin: -1px;
+        padding: 0;
+        border: 0;
+      }
+      .theme-toggle,
+      .theme-toggle:visited {
+        display: block;
+        width: 2.25rem;
+        height: 2.25rem;
+        background-color: var(--btn-bg);
+        border: 0.125rem solid transparent;
+        border-radius: 50%;
+        padding: 0.25rem;
+        color: var(--btn-fg);
+        text-decoration: none;
+        box-shadow: 0 0.25em 0.25em rgba(0, 0, 0, 0.3);
+        outline: 0 solid;
+        transition: 0.3s ease-out all;
+        box-sizing: content-box;
+      }
+      .theme-toggle:hover,
+      .theme-toggle:focus {
+        color: var(--btn-fg-hover);
+        background-color: var(--btn-bg-hover);
+        border-color: var(--btn-fg-hover);
+        transform: scale(1.2);
+        box-shadow: 0 0.5em 0.5em rgba(0, 0, 0, 0.4);
+      }
+      .theme-svg {
+        width: 2.25rem;
+        height: 2.25rem;
+        fill: currentColor;
+        stroke: currentColor;
+        border-radius: 100%;
+        overflow: hidden;
+        pointer-events: none;
+        transition: transform 0.5s ease-out;
+      }
+
+      /* Light / dark mode button specifically */
+      .theme-toggle[aria-pressed="false"] .theme-dark,
+      .theme-toggle[aria-pressed="true"] .theme-light {
+        display: none;
+      }
+      .theme-toggle[aria-pressed="false"] .theme-light,
+      .theme-toggle[aria-pressed="true"] .theme-dark {
+        display: block;
+      }
+
+      @media print {
+        .theme-toggle {
+          display: none;
+        }
       }
     </style>
   </body>

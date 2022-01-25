@@ -4,14 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FreeCodeCamp Indy Surveys</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
   </head>
   <body>
     <div id="app" class="wrapper">
-      <link
-        rel="stylesheet"
-        :href="'https://cdn.jsdelivr.net/npm/water.css@2/out/' + mode + '.min.css'"
-      >
       <h1>FreeCodeCamp Indy Surveys</h1>
 
       <a href="https://docs.google.com/forms/d/e/1FAIpQLScEIwFSIoyGfy7W-0dFoqG-x6LR8k7Vqi6ir5po2XksVYlMbA/viewform">
@@ -27,6 +24,7 @@
       <div
         v-for="(number, index) in 10"
         :key="'results' + index"
+        class="img-container"
       >
         <a :href="fileFromIndex(index)">
           <img :src="fileFromIndex(index)">
@@ -38,7 +36,6 @@
         el: '#app',
         data: function () {
           return {
-            mode: 'light'
           };
         },
         methods: {
@@ -49,6 +46,13 @@
       });
     </script>
     <style>
+      body {
+        max-width: 900px;
+      }
+      .wrapper {
+        background: var(--background-alt);
+        padding: 0px 10px;
+      }
       button {
         display: block;
         background: #2D4D99;
@@ -59,6 +63,9 @@
       }
       button:hover {
         background: #040A0F;
+      }
+      .img-container {
+        margin-bottom: 20px;
       }
     </style>
   </body>

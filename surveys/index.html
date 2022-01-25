@@ -14,8 +14,8 @@
       >
       <button
         class="theme-toggle"
-        :aria-pressed="mode === 'light'"
-        aria-label="Change to dark mode"
+        :aria-pressed="String(mode === 'light')"
+        aria-label="Toggle light/dark mode"
         @click="toggleMode"
       >
         <svg class="theme-svg" focusable="false">
@@ -118,6 +118,9 @@
       }
       .theme-toggle,
       .theme-toggle:visited {
+        position: fixed;
+        top: -10px;
+        right: 20px;
         display: block;
         width: 2.25rem;
         height: 2.25rem;

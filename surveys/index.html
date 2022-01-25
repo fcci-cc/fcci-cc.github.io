@@ -84,6 +84,11 @@
           fileFromIndex: function (index) {
             return ((12 - index) + '').padStart(3, '0') + '.png';
           }
+        },
+        created: function () {
+          if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            this.mode === 'dark';
+          }
         }
       });
     </script>

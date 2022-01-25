@@ -21,11 +21,11 @@
       <h2>Past Survey Results</h2>
 
       <div
-        v-for="(number, index) in 9"
+        v-for="(number, index) in 10"
         :key="'results' + index"
       >
         <a :href="fileFromIndex(index)">
-          <img src="fileFromIndex(index)">
+          <img :src="fileFromIndex(index)">
         </a>
       </div>
     </div>
@@ -39,7 +39,7 @@
         },
         methods: {
           fileFromIndex: function (index) {
-            return ((12 - index) + '').padStart(3, '0');
+            return ((12 - index) + '').padStart(3, '0') + '.png';
           }
         }
       });

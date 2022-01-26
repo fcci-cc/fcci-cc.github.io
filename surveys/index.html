@@ -53,7 +53,7 @@
       <h2>Past Survey Results</h2>
 
       <div
-        v-for="(number, index) in 10"
+        v-for="(number, index) in (totalPolls - 2)"
         :key="'results' + index"
         class="img-container"
       >
@@ -66,12 +66,17 @@
     <script>
       const app = new Vue({
         mixins: [reusableVueCode],
+        data: function () {
+          return {
+            totalPolls: 13
+          };
+        },
         methods: {
           navigateTo: function (url) {
             window.location = url;
           },
           fileFromIndex: function (index) {
-            return ((12 - index) + '').padStart(3, '0') + '.png';
+            return ((this.totalPolls - index) + '').padStart(3, '0') + '.png';
           }
         }
       });

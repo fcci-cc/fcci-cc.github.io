@@ -41,9 +41,7 @@
       <header>
         <h1>FreeCodeCamp Indy Surveys</h1>
 
-        <button
-          @click="navigateTo('https://docs.google.com/forms/d/e/1FAIpQLScP18Wg7dU86o9i24C1v3zBqibKOXdDr3AD1GvARGth737KAA/viewform')"
-        >
+        <button @click="navigateTo(currentPoll)">
           Take the January 2022 Survey
         </button>
       </header>
@@ -53,12 +51,16 @@
       <h2>Past Survey Results</h2>
 
       <div
-        v-for="(number, index) in (totalPolls - 2)"
-        :key="'results' + index"
+        v-for="(result, index) in results"
+        :key="'result' + index"
         class="img-container"
       >
-        <a :href="fileFromIndex(index)">
-          <img :src="fileFromIndex(index)">
+        <h3>Results from {{ result.date }}</h3>
+        <a :href="result.graph">
+          <img
+            :src="result.graph"
+            :alt="'Chart showing poll results from ' + result.date + '.'"
+          >
         </a>
       </div>
     </div>
@@ -68,15 +70,28 @@
         mixins: [reusableVueCode],
         data: function () {
           return {
-            totalPolls: 13
+            currentPoll: 'https://docs.google.com/forms/d/e/1FAIpQLScP18Wg7dU86o9i24C1v3zBqibKOXdDr3AD1GvARGth737KAA/viewform',
+            results: [
+              // { graph: '014.png', date: 'January 26th 2022' },
+              { graph: '013.png', date: 'November 12th 2018' },
+              { graph: '012.png', date: 'October 22nd 2018' },
+              { graph: '011.png', date: 'August 22nd 2018' },
+              { graph: '010.png', date: 'June 19th 2017' },
+              { graph: '009.png', date: 'May 25th 2017' },
+              { graph: '008.png', date: 'April 12th 2017' },
+              { graph: '007.png', date: 'April 5th 2017' },
+              { graph: '006.png', date: 'March 2017' },
+              { graph: '005.png', date: 'February 26th 2017' },
+              { graph: '004.png', date: 'February 6th 2017' },
+              { graph: '003.png', date: 'January 11th 2017' },
+              { graph: '002.png', date: 'December 7th 2016' },
+              { graph: '001.png', date: 'October 17th 2016' },
+            ]
           };
         },
         methods: {
           navigateTo: function (url) {
             window.location = url;
-          },
-          fileFromIndex: function (index) {
-            return ((this.totalPolls - index) + '').padStart(3, '0') + '.png';
           }
         }
       });

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FreeCodeCamp Indy Surveys</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <script src="/mixin.js"></script>
   </head>
   <body>
     <div id="app" class="wrapper">
@@ -35,7 +36,7 @@
             <path d="M480 800c22 0 40 18 40 40v80a40 40 0 01-80 0v-80c0-22 18-40 40-40zm480-320c0 22-18 40-40 40h-80a40 40 0 010-80h80c22 0 40 18 40 40zM706 763l57 56a40 40 0 1056-56l-56-57a40 40 0 10-57 57zm-509 56l57-56a40 40 0 10-57-57l-56 57a40 40 0 1056 56zm-77-379a40 40 0 010 80H40a40 40 0 010-80h80zm21-243l56 57a40 40 0 1057-57l-57-56a40 40 0 10-56 56zm622 57l56-57a40 40 0 10-56-56l-57 56a40 40 0 1057 57zM440 40v80a40 40 0 0080 0V40a40 40 0 00-80 0z" />
           </symbol>
         </defs>
-      </svg>      
+      </svg>
       
       <header>
         <h1>FreeCodeCamp Indy Surveys</h1>
@@ -64,30 +65,13 @@
 
     <script>
       const app = new Vue({
-        el: '#app',
-        data: function () {
-          return {
-            mode: 'light'
-          };
-        },
+        mixins: [reusableVueCode],
         methods: {
-          toggleMode: function () {
-            if (this.mode === 'light') {
-              this.mode = 'dark';
-            } else {
-              this.mode = 'light';
-            }
-          },
           navigateTo: function (url) {
             window.location = url;
           },
           fileFromIndex: function (index) {
             return ((12 - index) + '').padStart(3, '0') + '.png';
-          }
-        },
-        created: function () {
-          if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            this.mode === 'dark';
           }
         }
       });

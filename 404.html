@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FreeCodeCamp-Indy</title>
+    <script>
+      // Get the URL the user typed
+      const desiredURL = window.location.pathname;
+      const forwardingMap = {
+        '/surveys': [
+          'survey',
+          'surveys',
+          'poll',
+          'polls',
+          'survay',
+        ],
+        '/meetup': [
+          'meetup',
+          'meetups',
+          'events',
+          'metup',
+          'meet',
+          'event'
+        ],
+        '/discord': [
+          'discord',
+          'chat'
+        ],
+        '/getting-started': [
+          'getting-started',
+          'gettingstarted',
+          'starting'
+        ],
+        '/machyne': [
+          'machyne',
+          'themachyne',
+          'the-machyne',
+          'machyneparking',
+          'machyne-parking',
+          'themachyneparking',
+          'the-machyne-parking',
+          'machine',
+          'themachine',
+          'the-machine',
+          'machineparking',
+          'machine-parking',
+          'themachineparking',
+          'the-machine-parking'
+        ],
+        '/speaker': [
+          'speaker',
+          'speakers',
+          'speaking',
+          'talk',
+          'talks',
+          'guest',
+          'guests'
+        ]
+      };
+
+      function foward (url, guesses) {
+        guesses.forEach(function (guess) {
+          // RegExp to match any URL (after the domain) with the guess in it ("machine")
+          const regex = new RegExp('^(?:\/)(?:[^\ ]*)(?:' + guess + ')(?:.*)$', 'gm');
+          // If the typed URL has "machine" anywhere in it
+          if (regex.test(desiredURL)) {
+            // go to /machyne
+            window.location.replace(url);
+          }
+        });
+      }
+
+      Object.keys(forwardingMap).forEach(function (url) {
+        const guesses = fowardingMap[url];
+        forward(url, guesses);
+      });
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

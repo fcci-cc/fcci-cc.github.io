@@ -57,7 +57,7 @@
         ]
       };
 
-      function foward (url, guesses) {
+      function forward (url, guesses) {
         guesses.forEach(function (guess) {
           // RegExp to match any URL (after the domain) with the guess in it ("machine")
           const regex = new RegExp('^(?:\/)(?:[^\ ]*)(?:' + guess + ')(?:.*)$', 'gm');

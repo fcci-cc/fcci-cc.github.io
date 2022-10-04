@@ -1,0 +1,15 @@
+* {
+  font-family: sans-serif;
+}
+
+body {
+  padding: 50px 200px 50px 200px;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  text-align: right;
+}
